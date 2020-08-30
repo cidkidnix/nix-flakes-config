@@ -8,7 +8,7 @@ Nix configs based on flakes
           nix.package = pkgs.nixUnstable;
           nix.extraOptions = ''
             experimental-features = nix-command flakes
-          ''
+          '';
  ```
 - then clone this repo this repo and issue 
 ``` nixos-rebuild switch --flake /path/to/clone/dir#system-name defined in flake.nix```
