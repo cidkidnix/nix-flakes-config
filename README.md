@@ -4,7 +4,8 @@ Nix configs based on flakes
 
 # How to use
 - add to your config
-``` nix.package = pkgs.nixUnstable;
+```nix
+          nix.package = pkgs.nixUnstable;
           nix.extraOptions = ''
             experimental-features = nix-command flakes
           ''
