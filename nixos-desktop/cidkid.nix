@@ -18,7 +18,7 @@
 
 	   packages = with pkgs; [
 		firefox discord spotify betterdiscordctl
-		steam virt-manager gnome3.gnome-tweaks
+		steam virt-manager
 		psensor nix-prefetch-scripts element-desktop
 		unzip pavucontrol multimc vscodium
 #		neofetch wine-lutris winetricks protontricks

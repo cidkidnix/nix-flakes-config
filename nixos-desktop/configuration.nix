@@ -105,7 +105,7 @@ in
 
   ### Nixpkgs
   environment.systemPackages = with pkgs; [
-    wget vim git chromium plata-theme papirus-icon-theme gnomeExtensions.arc-menu gnomeExtensions.dash-to-panel gnomeExtensions.appindicator
+    wget vim git plata-theme papirus-icon-theme
   ];
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.pulseaudio = true;
@@ -123,11 +123,10 @@ in
   services.xserver.layout = "us";
   services.xserver.libinput.enable = true;
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome3.enable = true;
+#  services.xserver.desktopManager.gnome3.enable = true;
 
 
   ### Sway
-/*  
   programs.sway = {
 	enable = true;
 	wrapperFeatures.gtk = true;
@@ -143,7 +142,7 @@ in
 		kanshi
 	];
   };
-*/
+
   
   ### Bluetooth
   hardware.bluetooth.enable = true;
