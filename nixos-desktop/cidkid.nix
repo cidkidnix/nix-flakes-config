@@ -8,6 +8,23 @@
 		userEmail = "cidkidnix@protonmail.com";
 	};
 	
+	gtk = {
+                enable = true;
+                theme = {
+                        name = "Plata-Noir-Compact";
+                        package = pkgs.plata-theme;
+                };
+		iconTheme = {
+			name = "Papirus-Dark";
+			package = pkgs.papirus-icon-theme;
+		};
+        };
+
+        qt = {
+                enable = true;
+                platformTheme = "gtk";
+        };
+
 	home = {
 	   sessionVariables = {
 		QT_QPA_PLATFORM = "xcb";

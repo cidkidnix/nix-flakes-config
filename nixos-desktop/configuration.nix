@@ -140,6 +140,7 @@ in
 		grim
 		slurp
 		kanshi
+		playerctl
 	];
   };
 
