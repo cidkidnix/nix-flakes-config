@@ -1,15 +1,30 @@
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-  inputs.home-manager.url = "github:rycee/home-manager/bqv-flakes";
+  inputs = {
+	nixpkgs-wayland.url = "github:colemickens/nixpkgs-wayland/master";
+        home-manager.url = "github:rycee/home-manager/bqv-flakes";
+        nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-  outputs = { self, nixpkgs, home-manager }: {
+        cidkid.url = "github:cidkidnix/nix-overlay/master";
+        cidkid.flake = false;
+  };
 
-    nixosConfigurations.jupiter-desktop = nixpkgs.lib.nixosSystem {
+  outputs = { self, nixpkgs, home-manager, nixpkgs-wayland, cidkid }: {
+
+    nixosConfigurations.jupiter-desktop = let 
+	cidkid-overlay = import cidkid;
+    in nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [ ./nixos-desktop/configuration.nix 
                   home-manager.nixosModules.home-manager
                   ./nixos-desktop/cidkid.nix
-                ];
+      
+		  ({ pkgs, config, ... }: {
+			config = {
+			     nixpkgs.overlays = [ nixpkgs-wayland.overlay cidkid-overlay ];
+		  	};
+		  })
+
+	         ];
     };
 
     nixosConfigurations.jupiter-virt = nixpkgs.lib.nixosSystem {

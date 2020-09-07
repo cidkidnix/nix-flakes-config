@@ -2,12 +2,6 @@
 { config, pkgs, ... }:
 
 let
-  cidkid = import (builtins.fetchGit {
-	url = "https://github.com/cidkidnix/nix-overlay.git";
-	rev = "1486a0ddf5ee9f26f7b2b2ec58a78c7535a86122";
-	ref = "master";
-  });
-
   overrides = import ./overrides.nix;
 in
 
@@ -109,7 +103,7 @@ in
   ];
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.pulseaudio = true;
-  nixpkgs.overlays = [ (cidkid) (overrides) ];
+  nixpkgs.overlays = [ (overrides) ];
 
   ### Fonts
   fonts.fonts = with pkgs; [
