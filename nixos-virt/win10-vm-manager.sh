@@ -5,11 +5,11 @@ do
          test1=`virsh list --all | grep win10-amd | grep -o "running"`
          if [[ $test == "shut off" ]]
                 then
-                        echo "Status"
-                        echo $test
+			echo "RESTARTING VM"
                         sleep 2
                         setpci -s "0000:29:00.0" 7c.l=39d5e86b
-                        sleep 5
+                        echo "SET PCI VALUE"
+			sleep 5
                         virsh start win10-amd
                         echo "VM RESTARTED"
                 else

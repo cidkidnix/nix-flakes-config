@@ -1,5 +1,9 @@
 { config, pkgs, ... }:
 
+let
+  vm-manager-amd = ./win10-vm-manager.sh;
+in
+
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -25,20 +29,31 @@
 	ip6tables -A INPUT -p tcp --dport 22 -j DROP
   '';
   
-  systemd.services.linux-vm = {
+  systemd.services.vm1 = {
         after = [ "multi-user.target" ];
         wantedBy = [ "multi-user.target" ];
 	serviceConfig = {
                 Type = "simple";
                 ExecStart = ''
-                        ${pkgs.libvirt}/bin/virsh start linux
+                        ${pkgs.libvirt}/bin/virsh start win10-amd
                 '';
 		ExecStop = ''
-			${pkgs.libvirt}/bin/virsh shutdown linux
+			${pkgs.libvirt}/bin/virsh shutdown win10-amd
 		'';
         };
   };
-  systemd.services.archlinux.enable = true;
+
+  systemd.services.vm-manager = {
+	after = [ "multi-user.target" ];
+	wantedBy = [ "multi-user.target" ];
+	serviceConfig = {
+		Type = "simple";
+		ExecStart = ''
+			${pkgs.bash}/bin/bash ${vm-manager-amd}
+		'';
+	};
+	path = [ pkgs.bash pkgs.libvirt pkgs.pciutils ];
+  };
 
   networking.hostName = "jupiter-virt"; # Define your hostname.
   networking.networkmanager.enable = true;

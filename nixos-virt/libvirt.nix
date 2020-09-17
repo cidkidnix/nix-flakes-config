@@ -20,7 +20,7 @@
   virtualisation.libvirtd = {
         enable = true;
         qemuVerbatimConfig = ''
-                user = "cidkid"
+                user = "jupiter"
         '';
   };
 }

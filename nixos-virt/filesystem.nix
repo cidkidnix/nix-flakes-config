@@ -9,10 +9,6 @@
 
   boot.zfs.extraPools = [ "tank" ];
 
-  environment.etc."libvirt/hooks/qemu".source = ./qemu.sh;
-  environment.etc."libvirt/hooks/qemu.d/archlinux/prepare/begin/start.sh".source = ./unbind.sh;
-  environment.etc."libvirt/hooks/qemu.d/archlinux/release/end/revert.sh".source = ./unbind.sh;
-
   networking.hostId = "3251f01c";
   boot.supportedFilesystems = [ "zfs" ];
 }
